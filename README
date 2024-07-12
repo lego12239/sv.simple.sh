@@ -1,0 +1,27 @@
+OVERVIEW
+========
+
+sv.simple.sh is a very simple supervisor written in bash.
+
+
+SYNOPSIS
+========
+
+export PIDFILE=/var/run/prg.pid
+./sv.simple.sh start
+./sv.simple.sh stop
+
+
+DESCRIPTION
+===========
+
+sv.simple.sh is a simple supervisor that might be used as a supervisor
+framework.
+
+By default, it can only do start and stop.
+
+Before a first use, "sleep 1m" in the while body should be replaced with
+needed command.
+
+PIDFILE variable should be defined in environment before every sv.simple.sh
+call, because start and stop actions depend on its value.
