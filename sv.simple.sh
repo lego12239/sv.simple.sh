@@ -47,6 +47,9 @@ hdl_sigterm()
 }
 
 trap hdl_sigterm SIGTERM
+trap hdl_sigterm SIGINT
+trap hdl_sigterm SIGHUP
+trap hdl_sigterm SIGQUIT
 
 binpath=${0%.*}
 
