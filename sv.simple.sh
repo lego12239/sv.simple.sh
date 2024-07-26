@@ -2,7 +2,7 @@
 # Version: 1.0
 # SPDX-License-Identifier: BSD-2-Clause
 #
-# Dependencies: nohup, setsid.
+# Dependencies: nohup, setsid, dirname.
 #
 # Usage:
 #   export PIDFILE=/var/run/prog.pid
@@ -51,7 +51,7 @@ trap hdl_sigterm SIGINT
 trap hdl_sigterm SIGHUP
 trap hdl_sigterm SIGQUIT
 
-binpath=${0%.*}
+#cd `dirname $0`
 
 while true; do
 	# REPLACE THE NEXT LINE WITH YOUR COMMAND
