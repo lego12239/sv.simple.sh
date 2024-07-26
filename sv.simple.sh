@@ -20,8 +20,12 @@ stop)
 		exit
 	fi
 	
-	# start-stop-daemon?
-	kill -TERM -`cat "$PIDFILE"`
+	pid=`cat "$PIDFILE"`
+	for p in `pgrep -x sv.simple.sh`; do
+		if [[ $pid = $p ]]; then
+			kill -TERM -$pid
+		fi
+	done
 	rm -f "$PIDFILE"
 	exit
 	;;
