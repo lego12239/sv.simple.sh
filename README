@@ -25,3 +25,6 @@ needed command.
 
 PIDFILE variable should be defined in environment before every sv.simple.sh
 call, because start and stop actions depend on its value.
+
+There is an extended version of daemon termination routine - hdl_sigterm_ext().
+See the script code for further info.
