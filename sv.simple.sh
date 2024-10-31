@@ -26,7 +26,12 @@ stop)
 			kill -TERM -$pid
 		fi
 	done
-	rm -f "$PIDFILE"
+	# Comment this while if you don't want to wait the daemon completely
+	# stopped.
+	while [ -f "$PIDFILE" ]; do
+		sleep 1s
+	done
+	#rm -f "$PIDFILE"
 	exit
 	;;
 RUN)
@@ -47,6 +52,7 @@ fi
 hdl_sigterm()
 {
 	trap - SIGTERM
+	rm -f "$PIDFILE"
 	kill -TERM -$$
 }
 
