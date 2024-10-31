@@ -56,6 +56,27 @@ hdl_sigterm()
 	kill -TERM -$$
 }
 
+# If you want to use extended version, then just rename this to hdl_sigterm
+# and hdl_sigterm above to _hdl_sigterm.
+# DO NOT FORGET to change every CMD to daemon name.
+hdl_sigterm_ext()
+{
+	local wait_sec=70
+
+	pkill -P $$ -TERM CMD
+	while pgrep -P $$ CMD >/dev/null; do
+		sleep 2s
+		((wait_sec-=2))
+		if [[ $wait_sec -le 0 ]]; then
+			pkill -P $$ -KILL CMD
+			break
+		fi
+	done
+	trap - SIGTERM
+	rm -f "$PIDFILE"
+	kill -TERM -$$
+}
+
 trap hdl_sigterm SIGTERM
 trap hdl_sigterm SIGINT
 trap hdl_sigterm SIGHUP
