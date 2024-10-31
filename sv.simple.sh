@@ -1,5 +1,5 @@
 #!/bin/bash
-# Version: 1.1
+# Version: 2.0
 # SPDX-License-Identifier: BSD-2-Clause
 #
 # Dependencies: nohup, setsid, dirname.
